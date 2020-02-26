@@ -5,10 +5,14 @@ if (!$open){
     echo 'Текст ошибки:'. mysqli_connect_error();
     exit;
 }
-$res = $open->query('select * from flying');
+$res = $open->query('select * from flying where id=' . $_POST['id']);
 $data = [];
+if (mysqli_num_rows($res) !== 1) {
+    echo 'иди нахуй';
+    exit();
+}
 while ($row = $res->fetch_assoc()) {
-    $data[] = [
+    $data = [
         'id' => $row['id'],
         'number' => $row['number'],
         'from' => $row['from'],
@@ -22,7 +26,7 @@ while ($row = $res->fetch_assoc()) {
         'price' => $row['price']
     ];
 }
-$k = $_POST['id'] - 4;
+
 echo '<html>
 <head>
 <title>Редактирование рейса</title>
@@ -69,35 +73,35 @@ width: 150px;
 <h1>Редактирование записи</h1>
 <form method="get" action="save_admin.php">
 <a>Номер рейса: </a>
-<input type="hidden" name="id" value="' . $data[$k]['id'] . '">
-<input type="text" name="number" value="' . $data[$k]['number'] .'">
+<input type="hidden" name="id" value="' . $data['id'] . '">
+<input type="text" name="number" value="' . $data['number'] .'">
 <br>
 <a>Откуда рейс: </a>
-<input type="text" name="from" value="' . $data[$k]['from'] .'">
+<input type="text" name="from" value="' . $data['from'] .'">
 <br>
 <a>Куда рейс: </a>
-<input type="text" name="to" value="' . $data[$k]['to'] .'">
+<input type="text" name="to" value="' . $data['to'] .'">
 <br>
 <a>Дата: </a>
-<input type="text" name="date" value="' . $data[$k]['date'] .'">
+<input type="text" name="date" value="' . $data['date'] .'">
 <br>
 <a>Время вылета: </a>
-<input type="text" name="timeoff" value="' . $data[$k]['timeoff'] .'">
+<input type="text" name="timeoff" value="' . $data['timeoff'] .'">
 <br>
 <a>Время посадки: </a>
-<input type="text" name="timeon" value="' . $data[$k]['timeon'] .'">
+<input type="text" name="timeon" value="' . $data['timeon'] .'">
 <br>
 <a>Количество пассажиров: </a>
-<input type="text" name="passengers" value="' . $data[$k]['passengers'] .'">
+<input type="text" name="passengers" value="' . $data['passengers'] .'">
 <br>
 <a>Класс: </a>
-<input type="text" name="class" value="' . $data[$k]['class'] .'">
+<input type="text" name="class" value="' . $data['class'] .'">
 <br>
 <a>Багаж: </a>
-<input type="text" name="bagage" value="' . $data[$k]['bagage'] .'">
+<input type="text" name="bagage" value="' . $data['bagage'] .'">
 <br>
 <a>Цена: </a>
-<input type="text" name="price" value="' . $data[$k]['price'] .'">
+<input type="text" name="price" value="' . $data['price'] .'">
 <br><br>
 <input name="save" type="submit" value="Сохранить">
 </form>

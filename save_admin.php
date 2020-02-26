@@ -18,6 +18,8 @@ $pas = $_GET['passengers'];
 $cl = $_GET['class'];
 $bag = $_GET['bagage'];
 $pr = $_GET['price'];
-$query ="update  flying set number='. $numb . ', from=' . $fr . ', to=' . $t . ', date=' . $data . ', timeoff=' . $tof . ', timeon=' . $ton . ', passengers=' . $pas . ', class=' . $cl . ', bagage=' . $bag . ', price=' . $pr . '  where id=" . $_GET['id'];
-header ('Location: airadmin.php');
+$query ="update  flying set number='{$numb}', `from`='{$fr}', `to`='{$t}', `date`='{$data}', timeoff='{$tof}', timeon='{$ton}', passengers='{$pas}', class='{$cl}', bagage='{$bag}', price='{$pr}'  where id=" . $_GET['id'];
+$open->query($query);
+echo 'Уеба, учись сам';
+//header ('Location: airadmin.php');
 ?>

@@ -66,8 +66,8 @@ for ($i=0; $i<$num_rows; $i++) {
     echo 'Допустимый объем багажа: ' . $data[$i]['bagage'] . ' Кг. ';
     echo 'Цена билета: ' . $data[$i]['price'];
     echo '<br>';
-    echo '<form method="post">';
-    echo '<input type="hidden" name="' . $i . '" value="' . $i . '">';
+    echo '<form method="post" action="red_admin.php">';
+    echo '<input type="hidden" name="id" value="' . $data[$i]['id'] . '"/>';
     echo '<button name="red_' . $i . '" id="' . $i . '">Редактировать</button>';
     echo '</form>';
     echo '<form method="post" action="del_admin.php">';
