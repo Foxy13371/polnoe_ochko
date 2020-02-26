@@ -5,6 +5,10 @@ if (!$open){
     echo 'Текст ошибки:'. mysqli_connect_error();
     exit;
 }
-$res ="delete * from flying where id = '5'";
+if (!$_POST['id']) {
+    exit;
+}
+$res ="delete from flying where id=" . $_POST['id'];
+$open->query($res);
 header ('Location: airadmin.php');
 ?>

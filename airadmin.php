@@ -9,6 +9,7 @@ $res = $open->query('select * from flying');
 $data = [];
 while ($row = $res->fetch_assoc()) {
     $data[] = [
+        'id' => $row['id'],
         'number' => $row['number'],
         'from' => $row['from'],
         'to' => $row['to'],
@@ -53,7 +54,7 @@ font-size: 18px;
 <br><br><br>';
 echo '<div class="names">';
 
-for ($i=0; $i<$num_rows; $i++){
+for ($i=0; $i<$num_rows; $i++) {
     echo 'Номер рейса: ' . $data[$i]['number'] . ' ';
     echo 'Из ' . $data[$i]['from'] . ' ';
     echo 'в ' . $data[$i]['to'] . ' ';
@@ -70,7 +71,8 @@ for ($i=0; $i<$num_rows; $i++){
     echo '<button name="red_' . $i . '" id="' . $i . '">Редактировать</button>';
     echo '</form>';
     echo '<form method="post" action="del_admin.php">';
-    echo '<button name="del_' . $i . '" id="' . $i . '">Удалить</button>';
+    echo '<input type="hidden" name="id" value="' . $data[$i]['id'] . '"/>';
+    echo '<input name="del" type="submit" value="Удалить" />';
     echo '</form>';
     echo '<br>';
     }
