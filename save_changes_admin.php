@@ -16,5 +16,5 @@ $cl = $_GET['class'];
 $bag = $_GET['bagage'];
 $pr = $_GET['price'];
 $query = mysqli_query($open, "insert into  flying ('number', 'from', 'to', 'date', 'timeoff', 'timeon', 'passengers', 'class', 'bagage', 'price') values ('{$numb}', '{$fr}', '{$t}', '{$data}', '{$tof}', '{$ton}', '{$pas}', '{$cl}', '{$bag}', '{$pr}' )");
-var_dump($query);
+var_dump("insert into  flying ('number', 'from', 'to', 'date', 'timeoff', 'timeon', 'passengers', 'class', 'bagage', 'price') values ('{$numb}', '{$fr}', '{$t}', '{$data}', '{$tof}', '{$ton}', '{$pas}', '{$cl}', '{$bag}', '{$pr}' )");
 ?>
