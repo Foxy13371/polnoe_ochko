@@ -12,7 +12,33 @@ $tof = $_GET['timeoff'];
 $cl = $_GET['class'];
 $bag = $_GET['bagage'];
 $pr = $_GET['price'];
-$res = $open->query('select * from flying where `from`=$fr and `to`=$t and `date`=$data and `timeoff`=$tof and `class`=$cl and `bagage`=$bag and `price`<=$pr');
+$summ = 0;
+$query = 'select * from flying where ';
+if (!empty($fr)) {
+    if (!$summ) {
+        $summ++;
+    }
+    $query .= "`from`='{$fr}'";
+}
+if (!empty($t)) {
+    if (!$summ) {
+        $summ++;
+    } else {
+        $query .= ' and ';
+    }
+    $query .= " `to`='{$t}'";
+}
+if (!empty($data)) {
+    if (!$summ) {
+        $summ++;
+    } else {
+        $query .= ' and ';
+    }
+    $query .= " `date`='{$data}'";
+}
+$res = $open->query($query);
+var_dump("select * from flying where `from`='{$fr}' and `to`='{$t}' and `date`='{$data}' and `timeoff`='{$tof}' and `class`='{$cl}' and `bagage`={$bag} and `price`<={$pr}");
+var_dump($query);
 $data = [];
 while ($row = $res->fetch_assoc()) {
     $data[] = [
